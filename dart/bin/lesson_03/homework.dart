@@ -8,6 +8,8 @@
 
 pyramid(int n) {
   // ваш код
+  List result = List.generate(n, (index) => List.filled(n--, 1));
+  return result.reversed;
 }
 
 // Напишите функцию, которая получает массив чисел и возвращаете сумму всех положительных.
@@ -16,6 +18,7 @@ pyramid(int n) {
 
 sumOfPositive(List<int> nums) {
   // Ваш код
+  return nums.fold<int>(0, (acc, element) => element > 0 ? acc + element : acc);
 }
 
 void main(List<String> arguments) {
