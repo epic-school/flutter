@@ -29,7 +29,30 @@
 /// 49
 /// [Event handler] Event is square of 7
 ///
+import 'dart:async';
+import 'dart:io';
+import 'dart:math';
+import 'dart:convert';
 
 void main() {
+  var streamController = StreamController();
+  var stream = streamController.stream.asBroadcastStream();
 
+  stream.listen((event) {
+    var square = sqrt(num.tryParse(event)!);
+    if (square == square.roundToDouble()) {
+      print("[Event handler] Event is square ${square.toInt()}");
+    } else {
+      print("[Event handler] Event is not a square of any integer number");
+    }
+  });
+  stdin.transform(utf8.decoder).listen((event) {
+    var input = int.tryParse(event);
+
+    if (input != null) {
+      streamController.add(event);
+    } else {
+      print("[Stdin] Input must be integer");
+    }
+  });
 }
