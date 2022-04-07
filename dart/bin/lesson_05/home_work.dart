@@ -49,10 +49,10 @@ void main() {
 
   stdin.listen((List<int> event) {
     final maybeInt = int.tryParse(String.fromCharCodes(event));
-    if (maybeInt != null) {
+    if (maybeInt != null && maybeInt >= 0) {
       streamController.add(maybeInt);
     } else {
-      print('[Stdin] Input must be integer');
+      print('[Stdin] Input must be positive integer');
     }
   });
 }
