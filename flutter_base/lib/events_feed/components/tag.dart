@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/events_feed/constants/colors.dart';
 import 'package:flutter_base/events_feed/constants/text_style.dart';
+import 'package:marquee/marquee.dart';
 
 class Tag extends StatelessWidget {
   final String tag;
@@ -21,12 +22,13 @@ class Tag extends StatelessWidget {
       height: 20.0,
       decoration: BoxDecoration(
           color: tagColor, borderRadius: BorderRadius.circular(38.0)),
-      child: Text(
-        tag,
+      child: Marquee(
+        text: tag,
         style: AppTextStyle.w400s12h16cW90.copyWith(color: AppColors.white),
-        maxLines: 1,
-        overflow: TextOverflow.fade,
-        softWrap: false,
+        blankSpace: 10.0,
+        velocity: 10.0,
+        fadingEdgeStartFraction: 0.2,
+        fadingEdgeEndFraction: 0.2,
       ),
     );
   }
