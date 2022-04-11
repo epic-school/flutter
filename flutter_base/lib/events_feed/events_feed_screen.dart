@@ -38,13 +38,16 @@ class _EventsFeedScreenState extends State<EventsFeedScreen> {
         toolbarHeight: 52.0,
       ),
       body: SingleChildScrollView(
-        child: FutureBuilder<AllData>(
-          future: getData(),
-          builder: (context, snapshot) {
-            return snapshot.hasData
-                ? FeedsView(context: context,snapshot: snapshot)
-                : const Skeleton();
-          },
+        child: Padding(
+          padding: const EdgeInsets.only(left: 12.0),
+          child: FutureBuilder<AllData>(
+            future: getData(),
+            builder: (context, snapshot) {
+              return snapshot.hasData
+                  ? FeedsView(context: context,snapshot: snapshot)
+                  : const Skeleton();
+            },
+          ),
         ),
       ),
     );

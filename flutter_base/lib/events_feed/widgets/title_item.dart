@@ -12,7 +12,7 @@ class TitleItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.fromLTRB(4.0, 24.0, 16.0, 14.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -30,7 +30,7 @@ class TitleItem extends StatelessWidget {
             ),
             child: const Icon(
               Icons.chevron_right,
-              color: AppColors.white,
+              color: AppColors.white90,
             ),
           )
         ],

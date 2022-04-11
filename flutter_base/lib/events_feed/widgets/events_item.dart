@@ -26,6 +26,7 @@ class EventsItem extends StatelessWidget {
             DateFormat('E').format(date).substring(1);
     return Container(
       width: 292.0,
+      height: 152.0,
       margin: const EdgeInsets.symmetric(horizontal: 4.0),
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(

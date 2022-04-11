@@ -21,58 +21,49 @@ class FeedsView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const TitleItem(title: 'Новости'),
-        Padding(
-          padding: const EdgeInsets.only(left: 12.0),
-          child: SizedBox(
-            height: 256.0,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: snapshot.data!.news.length,
-                itemBuilder: (context, index) {
-                  final news = snapshot.data!.news[index];
-                  return NewsItem(
-                    title: news.title,
-                    date: news.date,
-                  );
-                }),
-          ),
+        SizedBox(
+          height: 256.0,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: snapshot.data!.news.length,
+              itemBuilder: (context, index) {
+                final news = snapshot.data!.news[index];
+                return NewsItem(
+                  title: news.title,
+                  date: news.date,
+                );
+              }),
         ),
         const TitleItem(title: 'Мероприятия'),
-        Padding(
-          padding: const EdgeInsets.only(left: 12.0),
-          child: SizedBox(
-            height: 152.0,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: snapshot.data!.news.length,
-                itemBuilder: (context, index) {
-                  final event = snapshot.data!.events[index];
-                  return EventsItem(
-                    title: event.title,
-                    username: event.username,
-                    date: event.date,
-                    tag: event.tag,
-                  );
-                }),
-          ),
+        SizedBox(
+          height: 152.0,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: snapshot.data!.news.length,
+              itemBuilder: (context, index) {
+                final event = snapshot.data!.events[index];
+                return EventsItem(
+                  title: event.title,
+                  username: event.username,
+                  date: event.date,
+                  tag: event.tag,
+                );
+              }),
         ),
         const TitleItem(title: 'Дни рождения'),
-        Padding(
-          padding: const EdgeInsets.only(left: 12.0),
-          child: SizedBox(
-            height: 96,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: snapshot.data!.news.length,
-                itemBuilder: (context, index) {
-                  final birthday = snapshot.data!.birthdays[index];
-                  return BirthdaysItem(
-                    name: birthday.name,
-                    position: birthday.position,
-                    date: birthday.date,
-                  );
-                }),
-          ),
+        SizedBox(
+          height: 96,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: snapshot.data!.news.length,
+              itemBuilder: (context, index) {
+                final birthday = snapshot.data!.birthdays[index];
+                return BirthdaysItem(
+                  name: birthday.name,
+                  position: birthday.position,
+                  date: birthday.date,
+                );
+              }),
         ),
         const SizedBox(
           height: 46,

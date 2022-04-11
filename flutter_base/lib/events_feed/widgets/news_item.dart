@@ -18,6 +18,7 @@ class NewsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 292.0,
+      height: 256.0,
       margin: const EdgeInsets.symmetric(horizontal: 4.0),
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(

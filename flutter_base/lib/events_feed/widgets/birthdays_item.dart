@@ -21,6 +21,7 @@ class BirthdaysItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 292.0,
+      height: 96,
       margin: const EdgeInsets.symmetric(horizontal: 4.0),
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
