@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base/events_feed/components/box_layout.dart';
 import 'package:flutter_base/events_feed/constants/colors.dart';
 import 'package:flutter_base/events_feed/components/tag.dart';
 import 'package:flutter_base/events_feed/components/user_photo.dart';
@@ -24,16 +25,9 @@ class EventsItem extends StatelessWidget {
     final String _dayOfWeek =
         DateFormat('E').format(date).substring(0, 1).toUpperCase() +
             DateFormat('E').format(date).substring(1);
-    return Container(
-      width: 292.0,
-      height: 152.0,
-      margin: const EdgeInsets.symmetric(horizontal: 4.0),
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        color: AppColors.cardBackground,
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-      child: Padding(
+    return BoxLayout(
+      borderRadius: 16.0,
+      feedItem: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

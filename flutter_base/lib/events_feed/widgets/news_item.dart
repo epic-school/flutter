@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base/events_feed/components/box_layout.dart';
 import 'package:flutter_base/events_feed/constants/colors.dart';
 import 'package:flutter_base/events_feed/components/get_image.dart';
 import 'package:flutter_base/events_feed/constants/text_style.dart';
@@ -16,16 +17,9 @@ class NewsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 292.0,
-      height: 256.0,
-      margin: const EdgeInsets.symmetric(horizontal: 4.0),
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        color: AppColors.cardBackground,
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: Column(
+    return BoxLayout(
+      borderRadius: 8.0,
+      feedItem: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const AspectRatio(
@@ -39,7 +33,8 @@ class NewsItem extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: AppTextStyle.w400s14h20cW90.copyWith(fontSize: 16.0, height: 1.375),
+                  style: AppTextStyle.w400s14h20cW90
+                      .copyWith(fontSize: 16.0, height: 1.375),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -47,7 +42,8 @@ class NewsItem extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Text(
                     DateFormat('dd MMMM y в HH:mm').format(date),
-                    style: AppTextStyle.w400s14h20cW90.copyWith(color: AppColors.grey),
+                    style: AppTextStyle.w400s14h20cW90
+                        .copyWith(color: AppColors.grey),
                     maxLines: 1,
                     overflow: TextOverflow.fade,
                     softWrap: false,

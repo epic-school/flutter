@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base/events_feed/components/box_layout.dart';
 import 'package:flutter_base/events_feed/constants/colors.dart';
 import 'package:flutter_base/events_feed/components/reminder_button.dart';
 import 'package:flutter_base/events_feed/components/user_photo.dart';
@@ -19,16 +20,9 @@ class BirthdaysItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 292.0,
-      height: 96,
-      margin: const EdgeInsets.symmetric(horizontal: 4.0),
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        color: AppColors.cardBackground,
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-      child: Padding(
+    return BoxLayout(
+      borderRadius: 16.0,
+      feedItem: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +53,8 @@ class BirthdaysItem extends StatelessWidget {
                       DateFormat('dd MMMM').format(DateTime.now()) ==
                               DateFormat('dd MMMM').format(date)
                           ? 'Сегодня'
-                          : DateFormat('dd MMMM').format(DateTime.now().add(const Duration(days: 1))) ==
+                          : DateFormat('dd MMMM').format(DateTime.now()
+                                      .add(const Duration(days: 1))) ==
                                   DateFormat('dd MMMM').format(date)
                               ? 'Завтра'
                               : DateFormat('dd MMMM').format(date),

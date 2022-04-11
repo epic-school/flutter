@@ -3,12 +3,8 @@ import 'package:flutter_base/events_feed/constants/colors.dart';
 import 'package:flutter_base/events_feed/constants/text_style.dart';
 import 'package:flutter_base/events_feed/data.dart';
 import 'package:flutter_base/events_feed/models.dart';
-import 'package:flutter_base/events_feed/widgets/birthdays_item.dart';
-import 'package:flutter_base/events_feed/widgets/events_item.dart';
 import 'package:flutter_base/events_feed/widgets/feeds_view.dart';
-import 'package:flutter_base/events_feed/widgets/news_item.dart';
 import 'package:flutter_base/events_feed/widgets/skeleton.dart';
-import 'package:flutter_base/events_feed/widgets/title_item.dart';
 
 class EventsFeedScreen extends StatefulWidget {
   const EventsFeedScreen({Key? key}) : super(key: key);
