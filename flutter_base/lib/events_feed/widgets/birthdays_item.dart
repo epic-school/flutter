@@ -5,12 +5,12 @@ import 'package:flutter_base/events_feed/components/user_photo.dart';
 import 'package:flutter_base/events_feed/constants/text_style.dart';
 import 'package:intl/intl.dart';
 
-class BirthdayItem extends StatelessWidget {
+class BirthdaysItem extends StatelessWidget {
   final String name;
   final String position;
   final DateTime date;
 
-  const BirthdayItem(
+  const BirthdaysItem(
       {Key? key,
       required this.name,
       required this.position,
