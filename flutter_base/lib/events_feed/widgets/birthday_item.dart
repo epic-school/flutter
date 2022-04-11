@@ -58,7 +58,10 @@ class BirthdayItem extends StatelessWidget {
                       DateFormat('dd MMMM').format(DateTime.now()) ==
                               DateFormat('dd MMMM').format(date)
                           ? 'Сегодня'
-                          : DateFormat('dd MMMM').format(date),
+                          : DateFormat('dd MMMM').format(DateTime.now().add(const Duration(days: 1))) ==
+                                  DateFormat('dd MMMM').format(date)
+                              ? 'Завтра'
+                              : DateFormat('dd MMMM').format(date),
                       style: AppTextStyle.w400s12h16cW90.copyWith(
                           fontWeight: FontWeight.w700, color: AppColors.purple),
                       maxLines: 1,
