@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_base/events_feed/components/box_layout.dart';
 import 'package:flutter_base/events_feed/constants/colors.dart';
-import 'package:flutter_base/events_feed/components/get_image.dart';
+import 'package:flutter_base/events_feed/components/fake_image.dart';
 import 'package:flutter_base/events_feed/constants/text_style.dart';
 import 'package:intl/intl.dart';
 
@@ -18,13 +19,16 @@ class NewsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BoxLayout(
-      borderRadius: 8.0,
-      feedItem: Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const AspectRatio(
             aspectRatio: 292 / 150,
-            child: GetImage(),
+            child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8.0),
+                    topRight: Radius.circular(8.0)),
+                child: FakeImage()),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),

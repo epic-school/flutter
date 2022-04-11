@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/events_feed/components/box_layout.dart';
+import 'package:flutter_base/events_feed/components/fake_image.dart';
 import 'package:flutter_base/events_feed/constants/colors.dart';
 import 'package:flutter_base/events_feed/components/reminder_button.dart';
 import 'package:flutter_base/events_feed/components/user_photo.dart';
@@ -21,13 +22,12 @@ class BirthdaysItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BoxLayout(
-      borderRadius: 16.0,
-      feedItem: Padding(
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const UserPhoto(),
+            const UserPhoto(child: FakeImage(),),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: SizedBox(

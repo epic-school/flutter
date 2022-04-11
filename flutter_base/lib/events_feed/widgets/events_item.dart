@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/events_feed/components/box_layout.dart';
+import 'package:flutter_base/events_feed/components/fake_image.dart';
 import 'package:flutter_base/events_feed/constants/colors.dart';
 import 'package:flutter_base/events_feed/components/tag.dart';
 import 'package:flutter_base/events_feed/components/user_photo.dart';
@@ -26,8 +27,7 @@ class EventsItem extends StatelessWidget {
         DateFormat('E').format(date).substring(0, 1).toUpperCase() +
             DateFormat('E').format(date).substring(1);
     return BoxLayout(
-      borderRadius: 16.0,
-      feedItem: Padding(
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +35,7 @@ class EventsItem extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const UserPhoto(),
+                const UserPhoto(child: FakeImage()),
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0, right: 4.0),
                   child: SizedBox(

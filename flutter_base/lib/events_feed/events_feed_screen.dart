@@ -4,7 +4,7 @@ import 'package:flutter_base/events_feed/constants/text_style.dart';
 import 'package:flutter_base/events_feed/data.dart';
 import 'package:flutter_base/events_feed/models.dart';
 import 'package:flutter_base/events_feed/widgets/feeds_view.dart';
-import 'package:flutter_base/events_feed/widgets/skeleton.dart';
+import 'package:flutter_base/events_feed/widgets/skeleton_view.dart';
 
 class EventsFeedScreen extends StatefulWidget {
   const EventsFeedScreen({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class EventsFeedScreen extends StatefulWidget {
 
 class _EventsFeedScreenState extends State<EventsFeedScreen> {
   Future<AllData> getData() async {
-    await Future.delayed(const Duration(seconds: 0));
+    await Future.delayed(const Duration(seconds: 4));
     return AllData(news: newsList, events: eventList, birthdays: birthdayList);
   }
 
@@ -41,7 +41,7 @@ class _EventsFeedScreenState extends State<EventsFeedScreen> {
             builder: (context, snapshot) {
               return snapshot.hasData
                   ? FeedsView(context: context,snapshot: snapshot)
-                  : const Skeleton();
+                  : const SkeletonView();
             },
           ),
         ),
