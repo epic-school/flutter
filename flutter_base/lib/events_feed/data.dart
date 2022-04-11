@@ -16,6 +16,7 @@ final eventList = <EventModel>[
     title: 'В поисках оптимальной архитектуры проекта на Flutter',
     username: 'Анатолий Зверев',
     date: DateTime(2022, 04, 14, 11, 00),
+    tag: 'Митап',
   ),
   EventModel(
     title: 'Kotlin vs Java',
