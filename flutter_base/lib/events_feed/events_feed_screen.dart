@@ -5,6 +5,7 @@ import 'package:flutter_base/events_feed/data.dart';
 import 'package:flutter_base/events_feed/models.dart';
 import 'package:flutter_base/events_feed/widgets/feeds_view.dart';
 import 'package:flutter_base/events_feed/widgets/skeleton_view.dart';
+import 'package:shimmer/shimmer.dart';
 
 class EventsFeedScreen extends StatefulWidget {
   const EventsFeedScreen({Key? key}) : super(key: key);
@@ -40,8 +41,11 @@ class _EventsFeedScreenState extends State<EventsFeedScreen> {
             future: getData(),
             builder: (context, snapshot) {
               return snapshot.hasData
-                  ? FeedsView(context: context,snapshot: snapshot)
-                  : const SkeletonView();
+                  ? FeedsView(context: context, snapshot: snapshot)
+                  : Shimmer.fromColors(
+                      baseColor: AppColors.white90,
+                      highlightColor: AppColors.orange,
+                      child: const SkeletonView());
             },
           ),
         ),
