@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(
-      MaterialApp(
-        home: NestedScrollDemo(),
-      )
+    MaterialApp(
+      home: NestedScrollDemo(),
+    )
   );
 }
 
@@ -26,7 +26,7 @@ class NestedScrollDemo extends StatelessWidget {
                 sliver: SliverAppBar(
                   title: const Text('NestedScrollDemo'),
                   pinned: true,
-                  expandedHeight: 250.0,
+                  expandedHeight: 240.0,
                   forceElevated: innerBoxIsScrolled,
                   bottom: TabBar(
                     tabs: _tabs.map((String name) => Tab(text: name)).toList(),

@@ -1,11 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(
-      MaterialApp(
-        home: ScrollNotificationDemo(),
-      )
-  );
+  runApp(MaterialApp(
+    home: ScrollNotificationDemo(),
+  ));
 }
 
 class ScrollNotificationDemo extends StatelessWidget {
@@ -19,17 +19,24 @@ class ScrollNotificationDemo extends StatelessWidget {
       appBar: AppBar(title: const Text("ListView")),
       body: NotificationListener<ScrollNotification>(
         onNotification: (notify) {
-          print(notify.metrics.extentBefore);
+          print("end");
+          log(notify.metrics.axisDirection.toString());
           return true;
         },
-        child: ListView.builder(
-          itemCount: data.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              title: Text('This is title $index'),
-              subtitle: const Text('This is sub title'),
-            );
+        child: NotificationListener<ScrollStartNotification>(
+          onNotification: (notify) {
+            print("start");
+            return true;
           },
+          child: ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                title: Text('This is title $index'),
+                subtitle: const Text('This is sub title'),
+              );
+            },
+          ),
         ),
       ),
     );

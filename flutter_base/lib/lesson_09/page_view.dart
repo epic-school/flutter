@@ -21,13 +21,13 @@ class PageViewDemo extends StatelessWidget {
       appBar: AppBar(title: const Text("PageViewDemo")),
       body: PageView(
         // controller: PageController(
-        //   viewportFraction: 0.6,
+        //   viewportFraction: 0.9,
         //   initialPage: 0,
         // ),
-        // pageSnapping: false,
-        // onPageChanged: (value) {
-        //   print(value);
-        // },
+        pageSnapping: false,
+        onPageChanged: (value) {
+          print(value);
+        },
         children: [
           ...data.map(
             (e) => Container(

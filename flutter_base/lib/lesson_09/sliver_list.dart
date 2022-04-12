@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(
-      MaterialApp(
-        home: SliverDemo(),
-      )
-  );
+  runApp(MaterialApp(
+    home: SliverDemo(),
+  ));
 }
 
 class SliverDemo extends StatelessWidget {
@@ -19,14 +17,27 @@ class SliverDemo extends StatelessWidget {
       // appBar: AppBar(title: const Text("ListView")),
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(
+          SliverAppBar(
+            expandedHeight: 220.0,
+            pinned: true,
+            floating: true,
             // snap: true,
-            // floating: true,
-            // pinned: true,
-            stretch: true,
-            expandedHeight: 120,
-            title: Text("This is title"),
+            flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
+              title: const Text('Title',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                ),
+              ),
+              background: Image.network(
+                'https://images.pexels.com/photos/443356/pexels-photo-443356.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
+
+
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
@@ -40,6 +51,7 @@ class SliverDemo extends StatelessWidget {
               childCount: 30,
             ),
           ),
+
           SliverGrid(
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200.0,

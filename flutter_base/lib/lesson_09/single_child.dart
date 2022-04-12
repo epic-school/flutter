@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,23 +20,23 @@ class SingleChildDemo extends StatefulWidget {
 class _SingleChildDemoState extends State<SingleChildDemo> {
   final List<int> data = List.generate(20, (index) => index);
 
-  // ScrollController _controller = ScrollController();
+  ScrollController _controller = ScrollController();
 
-  // @override
-  // void initState() {
-  //   _controller.addListener(_onScrollEvent);
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    _controller.addListener(_onScrollEvent);
+    super.initState();
+  }
 
-  // @override
-  // void dispose() {
-  //   _controller.removeListener(_onScrollEvent);
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    _controller.removeListener(_onScrollEvent);
+    super.dispose();
+  }
 
-  // void _onScrollEvent() {
-  //   print("Extent after: ${_controller.position.extentAfter}");
-  // }
+  void _onScrollEvent() {
+    print("Extent after: ${_controller.position.extentAfter}");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,24 +44,24 @@ class _SingleChildDemoState extends State<SingleChildDemo> {
       appBar: AppBar(
         title: const Text("SingleChildScrollView"),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: const Color(0xff03dac6),
-      //   foregroundColor: Colors.black,
-      //   child: const Icon(Icons.add),
-      //   onPressed: () {
-      //     _controller.animateTo(
-      //       _controller.position.extentBefore + 120,
-      //       duration: const Duration(milliseconds: 1000),
-      //       curve: Curves.ease,
-      //     );
-      //   },
-      // ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xff03dac6),
+        foregroundColor: Colors.black,
+        child: const Icon(Icons.add),
+        onPressed: () {
+          _controller.animateTo(
+            _controller.position.extentBefore + 120,
+            duration: const Duration(milliseconds: 1000),
+            curve: Curves.ease,
+          );
+        },
+      ),
       body: SingleChildScrollView(
-        
-        // padding: const EdgeInsets.all(40),
+        controller: _controller,
+        //  padding: const EdgeInsets.all(40),
         // scrollDirection: Axis.horizontal,
         // reverse: true,
-        // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
         // physics: const NeverScrollableScrollPhysics(),
         // physics: const PageScrollPhysics(),
         child: Column(

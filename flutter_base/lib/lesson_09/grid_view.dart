@@ -18,13 +18,13 @@ class GridViewDemo extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("GridViewDemo")),
       body: GridView.builder(
-        // gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        //   maxCrossAxisExtent: 140.0,
-        //   mainAxisSpacing: 2.0,
-        //   crossAxisSpacing: 2.0,
-        //   childAspectRatio: 1,
-        // ),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 140.0,
+          mainAxisSpacing: 2.0,
+          crossAxisSpacing: 2.0,
+          childAspectRatio: 1,
+        ),
+        // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 10),
         itemCount: data.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(

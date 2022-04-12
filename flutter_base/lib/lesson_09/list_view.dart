@@ -17,14 +17,14 @@ class ListViewDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("ListView")),
-      body: ListView(
-        children: [
-          ...data.map((e) => ListTile(
-            title: Text('This is title $e'),
-            subtitle: const Text('This is sub title'),
-          ),)
-        ],
-      ),
+      // body: ListView(
+      //   children: [
+      //     ...data.map((e) => ListTile(
+      //       title: Text('This is title $e'),
+      //       subtitle: const Text('This is sub title'),
+      //     ),)
+      //   ],
+      // ),
 
       // body: ListView.separated(
       //   itemCount: data.length,
@@ -36,21 +36,21 @@ class ListViewDemo extends StatelessWidget {
       //   },
       //   itemBuilder: (BuildContext context, int index) {
       //     return ListTile(
-      //       title: Text('This is title $index'),
+      //       title: Text('This is title ${data[index]}'),
       //       subtitle: const Text('This is sub title'),
       //     );
       //   },
       // ),
 
-      // body: ListView.builder(
-      //   itemCount: data.length,
-      //   itemBuilder: (BuildContext context, int index) {
-      //     return ListTile(
-      //       title: Text('This is title $index'),
-      //       subtitle: const Text('This is sub title'),
-      //     );
-      //   },
-      // ),
+      body: ListView.builder(
+        itemCount: data.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Text('This is title $index'),
+            subtitle: const Text('This is sub title'),
+          );
+        },
+      ),
     );
   }
 }

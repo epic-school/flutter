@@ -19,6 +19,7 @@ class ScrollableSheetDemo extends StatelessWidget {
       ),
       body: SizedBox.expand(
         child: DraggableScrollableSheet(
+          minChildSize: 0.2,
           builder: (BuildContext context, ScrollController scrollController) {
             return Container(
               decoration: BoxDecoration(
