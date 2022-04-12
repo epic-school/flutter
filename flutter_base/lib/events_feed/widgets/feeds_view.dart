@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/events_feed/models.dart';
+import 'package:flutter_base/events_feed/models/models.dart';
 import 'package:flutter_base/events_feed/widgets/birthdays_item.dart';
 import 'package:flutter_base/events_feed/widgets/events_item.dart';
 import 'package:flutter_base/events_feed/widgets/news_item.dart';

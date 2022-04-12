@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/events_feed/constants/colors.dart';
 import 'package:flutter_base/events_feed/constants/text_style.dart';
-import 'package:flutter_base/events_feed/data.dart';
-import 'package:flutter_base/events_feed/models.dart';
+import 'package:flutter_base/events_feed/data/data.dart';
+import 'package:flutter_base/events_feed/models/models.dart';
 import 'package:flutter_base/events_feed/widgets/feeds_view.dart';
 import 'package:flutter_base/events_feed/widgets/skeleton_view.dart';
 import 'package:shimmer/shimmer.dart';

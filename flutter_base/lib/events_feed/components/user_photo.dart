@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base/events_feed/constants/border_radius.dart';
 import 'package:flutter_base/events_feed/constants/colors.dart';
-import 'package:flutter_base/events_feed/components/fake_image.dart';
 
 class UserPhoto extends StatelessWidget {
   final Widget child;
@@ -14,10 +14,10 @@ class UserPhoto extends StatelessWidget {
       height: 64,
       decoration: BoxDecoration(
           color: AppColors.cardBackground,
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: AppBorderRadius.borderRadiusAll8,
           border: Border.all(color: AppColors.cardBackground)),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: AppBorderRadius.borderRadiusAll8,
         child: child,
       ),
     );
