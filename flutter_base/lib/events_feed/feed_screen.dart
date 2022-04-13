@@ -9,6 +9,9 @@ const _style = TextStyle(
   fontSize: 14.0,
 );
 
+var _now = DateTime.now();
+var _today = DateTime(_now.year, _now.month, _now.day);
+
 class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);
 
@@ -65,7 +68,45 @@ class _FeedScreenState extends State<FeedScreen> {
                       ),
                     ),
                     const _Title(title: 'Мероприятия'),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12.0),
+                      child: SizedBox(
+                        height: 152.0,
+                        child: Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          direction: Axis.vertical,
+                          children: eventList
+                              .map(
+                                (e) => _EventItem(
+                                  username: e.username,
+                                  date: e.date,
+                                  title: e.title,
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      ),
+                    ),
                     const _Title(title: 'Дни рождения'),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12.0),
+                      child: SizedBox(
+                        height: 96.0,
+                        child: Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          direction: Axis.vertical,
+                          children: birthdayList
+                              .map(
+                                (e) => _BirthsdayItem(
+                                  name: e.name,
+                                  date: e.date,
+                                  position: e.position,
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      ),
+                    ),
                   ],
                 )
               : const Center(
@@ -162,10 +203,10 @@ class _NewsItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  title,
+                  title + '\n',
                   style: _style.copyWith(
                     fontSize: 16.0,
                     height: 1.375,
@@ -187,6 +228,206 @@ class _NewsItem extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class _EventItem extends StatelessWidget {
+  final String title;
+  final String username;
+  final DateTime date;
+
+  const _EventItem({
+    Key? key,
+    required this.title,
+    required this.date,
+    required this.username,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 292.0,
+      margin: const EdgeInsets.symmetric(horizontal: 4.0),
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+        color: AppColors.cardBackground,
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: const SizedBox(
+                        height: 64.0, width: 64.0, child: _Image())),
+                SizedBox(
+                  width: 137.0,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          username,
+                          style: _style.copyWith(
+                            fontSize: 14.0,
+                            height: 1.43,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2.0),
+                          child: Text(
+                            DateFormat('dd MMMM (EE) \nHH:mm').format(date),
+                            style: const TextStyle(
+                              color: AppColors.color,
+                              fontSize: 10.0,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child: SizedBox(
+                    width: 47.0,
+                    height: 20.0,
+                    child: Container(
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        color: AppColors.orange,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Митап",
+                          style: _style.copyWith(
+                              fontSize: 12.0,
+                              height: 1.33,
+                              color: AppColors.color),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 16.0,
+              right: 16.0,
+              bottom: 16.0,
+            ),
+            child: Text(
+              title,
+              style: _style.copyWith(
+                fontSize: 14.0,
+                height: 1.43,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _BirthsdayItem extends StatelessWidget {
+  final String name;
+  final String position;
+  final DateTime date;
+
+  const _BirthsdayItem({
+    Key? key,
+    required this.name,
+    required this.date,
+    required this.position,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 292.0,
+      margin: const EdgeInsets.symmetric(horizontal: 4.0),
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+          color: AppColors.cardBackground,
+          borderRadius: BorderRadius.circular(8.0)),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child:
+                    const SizedBox(height: 64.0, width: 64.0, child: _Image())),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: SizedBox(
+                width: 160.0,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: _style.copyWith(
+                        fontSize: 14.0,
+                        height: 1.43,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2.0),
+                      child: Text(
+                        position,
+                        style: _style.copyWith(
+                          fontSize: 12.0,
+                          height: 1.33,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2.0),
+                      child: Text(
+                        _today == DateTime(date.year, date.month, date.day)
+                            ? "Сегодня"
+                            : DateFormat('MMMMd').format(date),
+                        style: const TextStyle(
+                          color: AppColors.purple,
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.bold,
+                          height: 1.33,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            if (_today == DateTime(date.year, date.month, date.day)) ...[
+              const Expanded(
+                  child: Icon(Icons.notifications_none, color: AppColors.gray))
+            ] else
+              ...[]
+          ],
+        ),
       ),
     );
   }
