@@ -1,4 +1,5 @@
-import 'package:flutter_base/events_feed/models.dart';
+
+import 'models.dart';
 
 final newsList = <NewsModel>[
   NewsModel(
