@@ -39,11 +39,11 @@ class SelectionButton extends StatelessWidget {
   }
 
   void _navigateAndDisplaySelection(BuildContext context) async {
-    final result = await Navigator.push(
+    final result = await Navigator.push<String>(
       context,
-      MaterialPageRoute(
-        builder: (context) => const SelectionScreen(),
-      ),
+      MaterialPageRoute(builder: (context) {
+        return const SelectionScreen();
+      }),
     );
 
     ScaffoldMessenger.of(context)
@@ -70,7 +70,7 @@ class SelectionScreen extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   // Close the screen and return "Yep!" as the result.
-                  Navigator.pop(context, 'Yep!');
+                  Navigator.of(context).pop<String>("Yep!");
                 },
                 child: const Text('Yep!'),
               ),
@@ -80,7 +80,7 @@ class SelectionScreen extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   // Close the screen and return "Nope." as the result.
-                  Navigator.pop(context, 'Nope.');
+                  Navigator.of(context).pop<String>("Nope.");
                 },
                 child: const Text('Nope.'),
               ),

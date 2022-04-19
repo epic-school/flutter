@@ -8,14 +8,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorObservers: [
-        NavigatorObserver(),
-      ],
       routes: {
         ExtractArgumentsScreen.routeName: (context) =>
             const ExtractArgumentsScreen(),
       },
-      initialRoute: ExtractArgumentsScreen.routeName,
+      onGenerateRoute: (settings) {
+        if (settings.name == PassArgumentsScreen.routeName) {
+          final args = settings.arguments as ScreenArguments;
+          return MaterialPageRoute(
+            builder: (context) {
+              return PassArgumentsScreen(
+                title: args.title,
+                message: args.message,
+              );
+            },
+          );
+        }
+        assert(false, 'Need to implement ${settings.name}');
+        return null;
+      },
+      title: 'Navigation with Arguments',
       home: const HomeScreen(),
     );
   }
@@ -88,6 +100,8 @@ class ExtractArgumentsScreen extends StatelessWidget {
   }
 }
 
+// A Widget that accepts the necessary arguments via the
+// constructor.
 class PassArgumentsScreen extends StatelessWidget {
   static const routeName = '/passArguments';
 
@@ -117,8 +131,5 @@ class ScreenArguments {
   final String title;
   final String message;
 
-  ScreenArguments(
-    this.title,
-    this.message,
-  );
+  ScreenArguments(this.title, this.message);
 }

@@ -32,7 +32,7 @@ class MyStatelessWidget extends StatelessWidget {
     return TextButton(
       onPressed: () => showDialog<String>(
         context: context,
-        builder: (BuildContext context) => Platform.isIOS
+        builder: (context) => !Platform.isIOS
             ? CupertinoAlertDialog(
                 title: Text('AlertDialog Title'),
                 content: Text('AlertDialog description'),

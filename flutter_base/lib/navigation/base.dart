@@ -4,14 +4,17 @@ void main() {
   runApp(const App());
 }
 
+final _key = GlobalKey<NavigatorState>();
+
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      navigatorKey: _key,
       debugShowCheckedModeBanner: false,
-      home: FirstRoute(),
+      home: const FirstRoute(),
     );
   }
 }
@@ -29,10 +32,10 @@ class FirstRoute extends StatelessWidget {
         child: ElevatedButton(
           child: const Text('Open route'),
           onPressed: () {
-            // Navigate to second route when tapped.
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SecondRoute()),
+            _key.currentState!.push(
+              MaterialPageRoute(
+                builder: (context) => const SecondRoute(),
+              ),
             );
           },
         ),
@@ -53,7 +56,6 @@ class SecondRoute extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            // Navigate back to first route when tapped.
             Navigator.pop(context);
           },
           child: const Text('Go back!'),

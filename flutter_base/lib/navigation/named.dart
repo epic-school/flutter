@@ -2,8 +2,37 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
+    MaterialApp(
       initialRoute: '/',
+      // routes: {
+      //   '/': (context) => const FirstScreen(),
+      //   '/second': (context) => const SecondScreen(),
+      // },
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => const FirstScreen(),
+            );
+          case '/second':
+            return MaterialPageRoute(
+              builder: (context) => const SecondScreen(),
+            );
+        }
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (context) => const Scaffold(
+            body: Center(
+              child: Icon(
+                Icons.cancel,
+                color: Colors.red,
+                size: 60.0,
+              ),
+            ),
+          ),
+        );
+      },
     ),
   );
 }
@@ -20,7 +49,7 @@ class FirstScreen extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            // Navigate to the second screen using a named route.
+            Navigator.pushNamed(context, '/second');
           },
           child: const Text('Launch screen'),
         ),
@@ -42,7 +71,7 @@ class SecondScreen extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             // Navigate back to the first screen
-            Navigator.pop(context);
+            Navigator.pushNamed(context, '/');
           },
           child: const Text('Go back!'),
         ),

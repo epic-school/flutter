@@ -48,6 +48,7 @@ class TodosScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const DetailScreen(),
+                  settings: RouteSettings(arguments: todos[index]),
                 ),
               );
             },
@@ -59,17 +60,21 @@ class TodosScreen extends StatelessWidget {
 }
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+  const DetailScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments! as Todo;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Title'),
+        title: Text(args.title),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Text('Description'),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(args.description),
       ),
     );
   }

@@ -12,7 +12,9 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const FirstRoute(),
-      navigatorObservers: [MyObserver()],
+      navigatorObservers: [
+        MyObserver(),
+      ],
     );
   }
 }
@@ -32,7 +34,9 @@ class FirstRoute extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const SecondRoute()),
+              MaterialPageRoute(
+                builder: (context) => const SecondRoute(),
+              ),
             );
           },
         ),
@@ -40,17 +44,6 @@ class FirstRoute extends StatelessWidget {
     );
   }
 }
-
-Future<T?> showDialog<T>({
-  required BuildContext context,
-  required WidgetBuilder builder,
-  bool barrierDismissible = true,
-  Color? barrierColor = Colors.black54,
-  String? barrierLabel,
-  bool useSafeArea = true,
-  bool useRootNavigator = true,
-  RouteSettings? routeSettings,
-}) async {}
 
 class SecondRoute extends StatelessWidget {
   const SecondRoute({Key? key}) : super(key: key);
@@ -77,8 +70,13 @@ class SecondRoute extends StatelessWidget {
 class MyObserver extends NavigatorObserver {
   @override
   void didPush(Route route, Route? previousRoute) {
-    print('From ${previousRoute?.settings.name ?? 'start'}');
-    print('To ${route.settings.name}');
+    print(previousRoute?.settings.name);
     super.didPush(route, previousRoute);
+  }
+
+  @override
+  void didPop(Route route, Route? previousRoute) {
+    print('POP');
+    super.didPop(route, previousRoute);
   }
 }
