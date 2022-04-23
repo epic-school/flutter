@@ -5,3 +5,11 @@ enum ContentState {
   empty,
   failure,
 }
+
+enum CommentState {
+  initial,
+  loading,
+  success,
+  empty,
+  failure,
+}
