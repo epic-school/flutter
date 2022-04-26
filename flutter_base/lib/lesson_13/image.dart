@@ -28,7 +28,7 @@ class ImageDemo extends StatelessWidget {
               height: 400,
               // fit: BoxFit.cover,
               // alignment: Alignment.bottomCenter,
-              repeat: ImageRepeat.repeat,
+              // repeat: ImageRepeat.repeat,
               // matchTextDirection: true,
               // color: Colors.red,
               // colorBlendMode: BlendMode.darken,
