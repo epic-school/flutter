@@ -3,6 +3,8 @@ class PostModel {
   final int id;
   final String title;
   final String body;
+  bool isViewed = false;
+  bool isBookmark = false;
 
   PostModel({
     required this.userId,
