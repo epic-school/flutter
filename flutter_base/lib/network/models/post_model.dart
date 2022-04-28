@@ -16,4 +16,11 @@ class PostModel {
         id = json['id'],
         title = json['title'],
         body = json['body'];
+
+  dynamic toJson() => {'userId': userId, 'id': id, 'title': title, 'body': body};
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
 }
