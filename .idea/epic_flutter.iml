@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/flutter_base/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_base/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter_base/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/dart/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/dart/build" />
+      <excludeFolder url="file://$MODULE_DIR$/dart/.pub" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
