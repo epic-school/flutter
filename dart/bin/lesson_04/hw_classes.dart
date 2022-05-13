@@ -6,3 +6,23 @@
 void main(List<String> arguments) {
   
 }
+
+class Student {
+  final String firstName;
+  final String lastName;
+
+  const Student({required this.firstName, required this.lastName});
+
+  String get fullName => '${firstName.capitalize()} ${lastName.capitalize()}';
+
+  @override
+  String toString() {
+    return fullName;
+  }
+}
+
+extension StringExtensions on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+  }
+}
