@@ -1,3 +1,9 @@
+import 'dart:async';
+
+import 'dart:io';
+
+import 'dart:math';
+
 ///
 /// Необходимо создать консольное приложение, которое слушало бы поток stdin
 /// (stdin содержит метод listen) и отправляла бы полученные результаты в
@@ -31,5 +37,22 @@
 ///
 
 void main() {
-
+  var streamController = StreamController();
+  streamController.stream.listen((event) {
+    var intValue = int.tryParse(event);
+    if (intValue != null) {
+      print('intValue = ${intValue}');
+      var sqrtValue = sqrt(intValue);
+      var intPart = sqrtValue.toInt();
+      var decimalPart = sqrtValue - intPart;
+      if (decimalPart == 0) {
+        print('Event is square of ${intPart}');
+      } else {
+        print('Event is not a square of any integer number');
+      }
+    } else {
+      print('Input must be integer');
+    }
+  });
+  streamController.add(stdin.readLineSync());
 }
