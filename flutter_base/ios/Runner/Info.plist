@@ -28,6 +28,14 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need image library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need microphone</string>
+
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
