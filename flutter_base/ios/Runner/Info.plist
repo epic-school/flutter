@@ -35,6 +35,10 @@
 	<string>We need camera</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We need microphone</string>
+	<key>UISupportsDocumentBrowser</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
 
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
