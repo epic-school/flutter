@@ -69,7 +69,7 @@ class MyHomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 ElevatedButton(
-                  child: const Text('Submit'),
+                  child: const Text('Отправить'),
                   onPressed: () async {
                     if (_formKey.currentState?.saveAndValidate() == true) {
                       final data = FormData.fromMap(_formKey.currentState!.value);
@@ -85,7 +85,7 @@ class MyHomePage extends StatelessWidget {
                   },
                 ),
                 ElevatedButton(
-                  child: const Text('Reset'),
+                  child: const Text('Сбросить'),
                   onPressed: () {
                     _formKey.currentState?.reset();
                   },
