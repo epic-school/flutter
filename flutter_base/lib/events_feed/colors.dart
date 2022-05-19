@@ -5,6 +5,7 @@ abstract class AppColors {
   static const orange = Color(0xFFFF5E2D);
   static const color = Color(0xFFFFFFFF);
   static const gray = Color.fromRGBO(255, 255, 255, 0.6);
+  static const shimmer = Color.fromRGBO(255, 255, 255, 0.06);
   static const background = Color(0xFF101828);
   static const cardBackground = Color.fromRGBO(255, 255, 255, 0.06);
 }
