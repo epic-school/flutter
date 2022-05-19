@@ -14,8 +14,8 @@ class ShimmerBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-        baseColor: Color.fromARGB(109, 255, 255, 255),
-        highlightColor: Color.fromARGB(255, 255, 255, 255),
+        baseColor: const Color.fromARGB(109, 255, 255, 255),
+        highlightColor: const Color.fromARGB(255, 255, 255, 255),
         child: Container(
           width: width,
           height: height,

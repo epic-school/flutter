@@ -46,8 +46,6 @@ class _FeedScreenState extends State<FeedScreen> {
           child: FutureBuilder(
         future: getData(),
         builder: (context, snapshot) {
-          print('========================');
-          print(snapshot.hasData);
           bool isShimmer = !snapshot.hasData;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
