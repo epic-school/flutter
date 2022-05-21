@@ -1,3 +1,4 @@
+import "dart:math";
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -12,6 +13,8 @@ abstract class AppColors {
 
   static const Color textPrimaryColor = Colors.white;
   static const Color textSecondaryColor = Color.fromRGBO(179, 185, 201, 1);
+  static const Color outgoingBGColor = Color.fromRGBO(122, 129, 148, 1);
+  static const Color incomingBGColor = Color.fromRGBO(55, 62, 78, 1);
 }
 
 abstract class AppTextStyle {
@@ -57,6 +60,33 @@ abstract class AppTextStyle {
     fontWeight: FontWeight.w400,
     color: AppColors.textSecondaryColor,
   );
+
+  static const TextStyle dateLabel = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 12.0,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 1.0,
+    color: AppColors.textPrimaryColor,
+  );
+
+  static const TextStyle message = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 14.0,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textPrimaryColor,
+  );
+}
+
+String getRandomMessage() {
+  const List<String> messagesList = [
+    'I commented on Figma, I want to add some fancy icons. Do you have any icon set?',
+    'I am in a process of designing some. When do you need them?',
+    'Next month?',
+    'I am almost finish. Please give me your email, I will ZIP them and send you as son as im finish.',
+    'maciej.kowalski@email.com',
+    '👍',
+  ];
+  return messagesList[Random().nextInt(messagesList.length)];
 }
 
 void main() {
@@ -314,13 +344,10 @@ class ChatDetail extends StatelessWidget {
           Expanded(
               child: ListView.separated(
             separatorBuilder: (context, index) {
-              if (index != 5 ) {
-                return Container();
-              }
-              return Divider();
+              return _MessagesListSeparator(index: index);
             },
             itemBuilder: (context, index) {
-              return const Text("asdasd");
+              return _MessagesListItem(index: index);
             },
             itemCount: 120,
           )),
@@ -365,6 +392,8 @@ class ChatDetail extends StatelessWidget {
                         decoration: InputDecoration(
                           hintText: "Message",
                           border: InputBorder.none,
+                          contentPadding: EdgeInsets.zero,
+                          isDense: true,
                         ),
                       ),
                     ),
@@ -382,6 +411,74 @@ class ChatDetail extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class _MessagesListSeparator extends StatelessWidget {
+  final int index;
+  const _MessagesListSeparator({
+    Key? key,
+    required this.index,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (index % 5 != 0) {
+      return Container();
+    }
+
+    return Container(
+      alignment: Alignment.center,
+      padding: const EdgeInsets.symmetric(
+        vertical: 4,
+      ),
+      child: const Text(
+        '1 FEB 12:00',
+        style: AppTextStyle.dateLabel,
+      ),
+    );
+  }
+}
+
+class _MessagesListItem extends StatelessWidget {
+  final int index;
+  const _MessagesListItem({
+    Key? key,
+    required this.index,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    bool isIncoming = index % 2 == 0;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 12.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: isIncoming ? AppColors.incomingBGColor : AppColors.outgoingBGColor,
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        padding: isIncoming
+            ? const EdgeInsets.only(
+                left: 24.0,
+                right: 14.0,
+                top: 12.0,
+                bottom: 12.0,
+              )
+            : const EdgeInsets.only(
+                left: 14.0,
+                right: 24.0,
+                top: 12.0,
+                bottom: 12.0,
+              ),
+        margin: isIncoming ? const EdgeInsets.only(right: 60) : const EdgeInsets.only(left: 60),
+        child: Text(
+          getRandomMessage(),
+          style: AppTextStyle.message,
+          textAlign: isIncoming ? TextAlign.left : TextAlign.right,
+        ),
       ),
     );
   }
