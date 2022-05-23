@@ -453,33 +453,31 @@ class _MessagesListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isIncoming = index % 2 == 0;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 12.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: isIncoming ? AppColors.incomingBGColor : AppColors.outgoingBGColor,
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        padding: isIncoming
-            ? const EdgeInsets.only(
-                left: 24.0,
-                right: 14.0,
-                top: 12.0,
-                bottom: 12.0,
-              )
-            : const EdgeInsets.only(
-                left: 14.0,
-                right: 24.0,
-                top: 12.0,
-                bottom: 12.0,
-              ),
-        margin: isIncoming ? const EdgeInsets.only(right: 60) : const EdgeInsets.only(left: 60),
-        child: Text(
-          getRandomMessage(),
-          style: AppTextStyle.message,
-          textAlign: isIncoming ? TextAlign.left : TextAlign.right,
-        ),
-      ),
+    return Column(
+      crossAxisAlignment: isIncoming ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 12.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: isIncoming ? AppColors.incomingBGColor : AppColors.outgoingBGColor,
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            padding: const EdgeInsets.only(
+              left: 16.0,
+              right: 16.0,
+              top: 12.0,
+              bottom: 12.0,
+            ),
+            margin: isIncoming ? const EdgeInsets.only(right: 60) : const EdgeInsets.only(left: 60),
+            child: Text(
+              getRandomMessage(),
+              style: AppTextStyle.message,
+              textAlign: isIncoming ? TextAlign.left : TextAlign.right,
+            ),
+          ),
+        )
+      ],
     );
   }
 }
