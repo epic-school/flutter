@@ -45,6 +45,7 @@ dependencies:
   form_builder_validators: ^8.1.1
   form_builder_image_picker: ^2.0.0
   form_builder_file_picker: ^2.1.0
+  flutter_lorem: ^2.0.0
   flutter_localizations:
     sdk: flutter
   intl_utils: ^2.6.1
@@ -119,6 +120,10 @@ flutter:
         - asset: assets/fonts/Poppins/Poppins-Medium.ttf
           weight: 500
         - asset: assets/fonts/Poppins/Poppins-SemiBold.ttf
+          weight: 600
+    - family: Mulish
+      fonts:
+        - asset: assets/fonts/Mulish/Mulish-SemiBold.ttf
           weight: 600
 
   # fonts:

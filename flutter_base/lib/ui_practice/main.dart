@@ -1,68 +1,15 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import './data.dart';
+import 'constants/app_colors.dart';
+import 'constants/app_text_style.dart';
 
 // https://www.figma.com/community/file/1066297521119881605?preview=fullscreen
 // https://i.pravatar.cc/200
 
-abstract class AppColors {
-  static const Color mainBgColor = Color.fromRGBO(27, 32, 45, 1);
-  static const Color secondaryBgColor = Color.fromRGBO(41, 47, 63, 1);
-
-  static const Color textPrimaryColor = Colors.white;
-  static const Color textSecondaryColor = Color.fromRGBO(179, 185, 201, 1);
-}
-
-abstract class AppTextStyle {
-  static const TextStyle heading = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 28.0,
-    fontWeight: FontWeight.w600,
-    color: AppColors.textPrimaryColor,
-  );
-
-  static const TextStyle heading2 = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 20.0,
-    fontWeight: FontWeight.w600,
-    color: AppColors.textPrimaryColor,
-  );
-
-  static const TextStyle subHeader = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 13.0,
-    fontWeight: FontWeight.w400,
-    color: AppColors.textSecondaryColor,
-    letterSpacing: 5,
-  );
-
-  static const TextStyle label = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 16.0,
-    fontWeight: FontWeight.w400,
-    color: AppColors.textPrimaryColor,
-  );
-
-  static const TextStyle accent = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 15.0,
-    fontWeight: FontWeight.w600,
-    color: AppColors.textPrimaryColor,
-  );
-
-  static const TextStyle accentL = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 14.0,
-    fontWeight: FontWeight.w400,
-    color: AppColors.textSecondaryColor,
-  );
-}
-
 void main() {
   runApp(
     MaterialApp(
-      home: ChatAppDemo(),
+      home: const ChatAppDemo(),
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
       darkTheme: ThemeData(
@@ -87,7 +34,7 @@ class ChatAppDemo extends StatelessWidget {
         slivers: [
           SliverAppBar(
             centerTitle: false,
-            expandedHeight: 220,
+            expandedHeight: 220.0,
             floating: true,
             pinned: true,
             snap: false,
@@ -97,12 +44,12 @@ class ChatAppDemo extends StatelessWidget {
             ),
             actions: [
               Padding(
-                padding: const EdgeInsets.only(right: 14),
+                padding: const EdgeInsets.only(right: 14.0),
                 child: IconButton(
                   onPressed: () {},
                   icon: const Icon(
                     Icons.search,
-                    size: 36,
+                    size: 36.0,
                   ),
                 ),
               )
@@ -110,9 +57,9 @@ class ChatAppDemo extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               background: Padding(
                 padding: const EdgeInsets.only(
-                  top: 110,
-                  left: 14,
-                  right: 14,
+                  top: 110.0,
+                  left: 14.0,
+                  right: 14.0,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,7 +68,7 @@ class ChatAppDemo extends StatelessWidget {
                       "RECENT",
                       style: AppTextStyle.subHeader,
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 12.0),
                     Expanded(
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -138,12 +85,12 @@ class ChatAppDemo extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Container(
-              height: 40,
+              height: 40.0,
               decoration: const BoxDecoration(
                 color: AppColors.secondaryBgColor,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(50),
-                  topRight: Radius.circular(50),
+                  topLeft: Radius.circular(50.0),
+                  topRight: Radius.circular(50.0),
                 ),
               ),
             ),
@@ -172,18 +119,18 @@ class _UserRecent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 30),
+      padding: const EdgeInsets.only(right: 30.0),
       child: Column(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(34),
+            borderRadius: BorderRadius.circular(34.0),
             child: Image.network(
               user.avatar,
-              width: 65,
-              height: 65,
+              width: 65.0,
+              height: 65.0,
             ),
           ),
-          const SizedBox(height: 9),
+          const SizedBox(height: 9.0),
           Text(
             user.name,
             style: AppTextStyle.label,
@@ -206,17 +153,17 @@ class _ChatListItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ChatDetail(),
+            builder: (context) => const ChatDetail(),
           ),
         );
       },
       child: Container(
         color: AppColors.secondaryBgColor,
         padding: const EdgeInsets.only(
-          left: 14,
-          right: 14,
-          bottom: 20,
-          top: 12,
+          left: 14.0,
+          right: 14.0,
+          bottom: 20.0,
+          top: 12.0,
         ),
         child: Row(
           children: [
@@ -224,21 +171,21 @@ class _ChatListItem extends StatelessWidget {
               decoration: const BoxDecoration(boxShadow: [
                 BoxShadow(
                   color: Colors.black45,
-                  offset: Offset(4, 4),
-                  blurRadius: 24,
+                  offset: Offset(4.0, 4.0),
+                  blurRadius: 24.0,
                   spreadRadius: 0,
                 )
               ]),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(26),
+                borderRadius: BorderRadius.circular(26.0),
                 child: Image.network(
                   user.avatar,
-                  width: 52,
-                  height: 52,
+                  width: 52.0,
+                  height: 52.0,
                 ),
               ),
             ),
-            const SizedBox(width: 20),
+            const SizedBox(width: 20.0),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -254,9 +201,12 @@ class _ChatListItem extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              height: 38,
-              child: const Text(
+            const SizedBox(
+              width: 16.0,
+            ),
+            const SizedBox(
+              height: 38.0,
+              child: Text(
                 "20:18",
                 style: AppTextStyle.accentL,
               ),
@@ -280,15 +230,15 @@ class ChatDetail extends StatelessWidget {
         title: Row(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(22),
+              borderRadius: BorderRadius.circular(22.0),
               child: Image.network(
                 "https://i.pravatar.cc/200",
-                width: 44,
-                height: 44,
+                width: 44.0,
+                height: 44.0,
               ),
             ),
-            SizedBox(
-              width: 14,
+            const SizedBox(
+              width: 14.0,
             ),
             const Text(
               "Danny Hopkins",
@@ -298,12 +248,12 @@ class ChatDetail extends StatelessWidget {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 14),
+            padding: const EdgeInsets.only(right: 14.0),
             child: IconButton(
               onPressed: () {},
               icon: const Icon(
                 Icons.search,
-                size: 36,
+                size: 36.0,
               ),
             ),
           )
@@ -312,69 +262,150 @@ class ChatDetail extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-              child: ListView.separated(
-            separatorBuilder: (context, index) {
-              if (index != 5 ) {
-                return Container();
-              }
-              return Divider();
-            },
-            itemBuilder: (context, index) {
-              return const Text("asdasd");
-            },
-            itemCount: 120,
-          )),
+            child: ListView.separated(
+              itemCount: messageList.length,
+              separatorBuilder: (context, index) {
+                if (index.isEven && index > 15 && index < 50 ||
+                    index.isOdd && index > 70 && index < 100) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 12.0, bottom: 8.0),
+                      child:
+                          Text(dateList[index].date, style: AppTextStyle.date),
+                    ),
+                  );
+                }
+                if (index == 110) {
+                  return const Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 12.0, bottom: 8.0),
+                      child: Text("08:12", style: AppTextStyle.date),
+                    ),
+                  );
+                }
+                if (index == 116) {
+                  return const Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 12.0, bottom: 8.0),
+                      child: Text("08:43", style: AppTextStyle.date),
+                    ),
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+              itemBuilder: (context, index) {
+                return (messageList[index].messageType == 'in')
+                    ? Align(
+                        alignment: Alignment.centerLeft,
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              right: MediaQuery.of(context).size.width * 0.3,
+                              left: 30.0,
+                              top: 6.0,
+                              bottom: 6.0),
+                          decoration: BoxDecoration(
+                            color: AppColors.inMsgBgColor,
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 12.0, right: 12.0, top: 8.0, bottom: 8.0),
+                            child: messageList[index].messageText.isNotEmpty
+                                ? Text(
+                                    messageList[index].messageText,
+                                    style: AppTextStyle.msg,
+                                    textAlign: TextAlign.left,
+                                  )
+                                : const Text('🤣'),
+                          ),
+                        ),
+                      )
+                    : (messageList[index].messageType == 'out')
+                        ? Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                  right: 30.0,
+                                  left: MediaQuery.of(context).size.width * 0.3,
+                                  top: 6.0,
+                                  bottom: 6.0),
+                              decoration: BoxDecoration(
+                                color: AppColors.outMsgBgColor,
+                                borderRadius: BorderRadius.circular(16.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 12.0,
+                                    right: 12.0,
+                                    top: 8.0,
+                                    bottom: 8.0),
+                                child: messageList[index].messageText.isNotEmpty
+                                    ? Text(
+                                        messageList[index].messageText,
+                                        style: AppTextStyle.msg,
+                                        textAlign: TextAlign.right,
+                                      )
+                                    : const Text('👍'),
+                              ),
+                            ),
+                          )
+                        : const Text('Error');
+              },
+            ),
+          ),
           Container(
             padding: const EdgeInsets.only(
-              left: 14,
-              right: 14,
-              bottom: 50,
-              top: 10,
+              left: 14.0,
+              right: 14.0,
+              bottom: 50.0,
+              top: 10.0,
             ),
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                color: AppColors.secondaryBgColor,
+                borderRadius: BorderRadius.circular(25.0),
+                color: AppColors.inputMsgFieldBgColor,
               ),
-              height: 46,
+              height: 46.0,
               padding: const EdgeInsets.only(
-                left: 6,
-                right: 6,
-                top: 8,
-                bottom: 8,
+                left: 6.0,
+                right: 6.0,
+                top: 8.0,
+                bottom: 8.0,
               ),
               child: Row(
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(15.0),
                     child: Container(
-                      width: 33,
-                      height: 33,
-                      color: AppColors.textSecondaryColor,
-                      child: Icon(
+                      width: 33.0,
+                      height: 33.0,
+                      color: AppColors.inputMsgFieldIconBgColor,
+                      child: const Icon(
                         Icons.camera_alt_outlined,
-                        size: 20,
+                        size: 20.0,
                         color: Colors.black,
                       ),
                     ),
                   ),
                   Expanded(
                     child: Container(
-                      margin: const EdgeInsets.only(left: 10, right: 10),
+                      margin: const EdgeInsets.only(left: 10.0, right: 10.0),
                       child: const TextField(
                         decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(bottom: 12.0),
                           hintText: "Message",
+                          hintStyle: AppTextStyle.hintText,
                           border: InputBorder.none,
                         ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8),
+                  const Padding(
+                    padding: EdgeInsets.only(right: 8.0),
                     child: Icon(
-                      Icons.send,
-                      size: 20,
-                      color: AppColors.textSecondaryColor,
+                      Icons.send_outlined,
+                      size: 20.0,
+                      color: AppColors.inputMsgFieldIconBgColor,
                     ),
                   ),
                 ],
