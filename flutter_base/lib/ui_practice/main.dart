@@ -9,9 +9,12 @@ import './data.dart';
 abstract class AppColors {
   static const Color mainBgColor = Color.fromRGBO(27, 32, 45, 1);
   static const Color secondaryBgColor = Color.fromRGBO(41, 47, 63, 1);
-
   static const Color textPrimaryColor = Colors.white;
   static const Color textSecondaryColor = Color.fromRGBO(179, 185, 201, 1);
+  static const Color outgoingColor = Color.fromRGBO(122, 129, 148, 1);
+  static const Color incomingColor = Color.fromRGBO(55, 62, 78, 1);
+
+
 }
 
 abstract class AppTextStyle {
@@ -57,7 +60,39 @@ abstract class AppTextStyle {
     fontWeight: FontWeight.w400,
     color: AppColors.textSecondaryColor,
   );
+
+
+  static const TextStyle dateLabel = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 12.0,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 1.0,
+    color: AppColors.textPrimaryColor,
+  );
+
+  static const TextStyle message = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 14.0,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textPrimaryColor,
+  );
 }
+
+
+
+
+final List<List<String>> messagesList = [
+  ['01 FEB 12:00','I commented on Figma, I want to add some fancy icons. Do you have any icon set?','in'],
+  ['','I am in a process of designing some. When do you need them?','out'],
+  ['','Next month?','in'],
+  ['08:12','I am almost finish. Please give me your email, I will ZIP them and send you as son as im finish.','out'],
+  ['','?','out'],
+  ['08:43','maciej.kowalski@email.com','in'],
+  ['','👍','out'],
+
+
+];
+
 
 void main() {
   runApp(
@@ -312,18 +347,75 @@ class ChatDetail extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-              child: ListView.separated(
-            separatorBuilder: (context, index) {
-              if (index != 5 ) {
-                return Container();
-              }
-              return Divider();
-            },
-            itemBuilder: (context, index) {
-              return const Text("asdasd");
-            },
-            itemCount: 120,
-          )),
+            child: ListView.separated(
+              itemCount: messagesList.length,
+              separatorBuilder: (context, index) {
+                if (messagesList[index][0]!='') {
+                  return Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 4,
+                      ),
+                      child:  Text(messagesList[index][0], style: AppTextStyle.dateLabel),
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+              itemBuilder: (context, index) {
+                if (index == 0) return const SizedBox.shrink();
+                return (messagesList[index-1][2]== 'in')
+                    ? Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        right: MediaQuery.of(context).size.width * 0.3,
+                        left: 30.0,
+                        top: 6.0,
+                        bottom: 6.0),
+                    decoration: BoxDecoration(
+                      color: AppColors.incomingColor,
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 12.0, right: 12.0, top: 8.0, bottom: 8.0),
+                      child:  Text(
+                        messagesList[index-1][1],
+                        style: AppTextStyle.message,
+                        textAlign: TextAlign.left,
+                      )
+                    ),
+                  ),
+                ):
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Container(
+                    margin: EdgeInsets.only(
+                        right: 30.0,
+                        left: MediaQuery.of(context).size.width * 0.3,
+                        top: 6.0,
+                        bottom: 6.0),
+                    decoration: BoxDecoration(
+                      color: AppColors.outgoingColor,
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 12.0,
+                          right: 12.0,
+                          top: 8.0,
+                          bottom: 8.0),
+                      child: Text(
+                        messagesList[index-1][1],
+                        style: AppTextStyle.message,
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+                  ),
+                );
+              },
+             ),
+          ),
           Container(
             padding: const EdgeInsets.only(
               left: 14,
@@ -365,6 +457,8 @@ class ChatDetail extends StatelessWidget {
                         decoration: InputDecoration(
                           hintText: "Message",
                           border: InputBorder.none,
+                          contentPadding: EdgeInsets.zero,
+                          isDense: true,
                         ),
                       ),
                     ),
