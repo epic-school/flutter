@@ -41,7 +41,7 @@ abstract class _FormStore with Store {
 
   @action
   void validateEmail(String value) {
-    error.email = isEmail(value) ? 'Not a valid email' : null;
+    error.email = !isEmail(value) ? 'Not a valid email' : null;
   }
 
   @action
@@ -65,7 +65,6 @@ abstract class _FormStore with Store {
       error.username = null;
     }
 
-    error.username = null;
   }
 
   Future<bool> checkValidUsername(String value) async {
