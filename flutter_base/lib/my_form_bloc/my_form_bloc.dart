@@ -42,6 +42,26 @@ class MyFormState {
     required this.isUsernameCheck,
   });
 
+  MyFormState copyWith({
+    String? username,
+    String? errorUsername,
+    String? email,
+    String? errorEmail,
+    String? password,
+    String? errorPassword,
+    bool? isUsernameCheck,
+  }) {
+    return MyFormState(
+      username: username ?? this.username,
+      errorUsername: errorUsername,
+      email: email ?? this.email,
+      errorEmail: errorEmail,
+      password: password ?? this.password,
+      errorPassword: errorPassword,
+      isUsernameCheck: isUsernameCheck ?? this.isUsernameCheck,
+    );
+  }
+
   bool get noErrors =>
       username.isNotEmpty &&
       errorUsername == null &&
@@ -70,95 +90,68 @@ class MyFormBloc extends Bloc<MyFormEvents, MyFormState> {
 
   void _onUsernameChanged(
       UsernameChanged event, Emitter<MyFormState> emit) async {
-    emit(MyFormState(
+    emit(state.copyWith(
       username: event.username,
       errorUsername: _checkUsername(event.username),
-      email: state.email,
       errorEmail: state.errorEmail,
-      password: state.password,
       errorPassword: state.errorPassword,
-      isUsernameCheck: state.isUsernameCheck,
     ));
 
     try {
-      emit(MyFormState(
-        username: state.username,
+      emit(state.copyWith(
         errorUsername: state.errorUsername,
-        email: state.email,
         errorEmail: state.errorEmail,
-        password: state.password,
         errorPassword: state.errorPassword,
         isUsernameCheck: true,
       ));
       final _isValid = await _checkValidUsername(event.username);
-      emit(MyFormState(
-        username: state.username,
+      emit(state.copyWith(
         errorUsername: state.errorUsername,
-        email: state.email,
         errorEmail: state.errorEmail,
-        password: state.password,
         errorPassword: state.errorPassword,
         isUsernameCheck: false,
       ));
       if (!_isValid) {
-        emit(MyFormState(
+        emit(state.copyWith(
           username: event.username,
           errorUsername: 'Username cannot be "admin"',
-          email: state.email,
           errorEmail: state.errorEmail,
-          password: state.password,
           errorPassword: state.errorPassword,
-          isUsernameCheck: state.isUsernameCheck,
         ));
-
         return;
       }
     } catch (_) {
-      emit(MyFormState(
-        username: state.username,
+      emit(state.copyWith(
         errorUsername: null,
-        email: state.email,
         errorEmail: state.errorEmail,
-        password: state.password,
         errorPassword: state.errorPassword,
-        isUsernameCheck: state.isUsernameCheck,
       ));
     }
   }
 
   void _onEmailChanged(EmailChanged event, Emitter<MyFormState> emit) =>
-      emit(MyFormState(
-        username: state.username,
+      emit(state.copyWith(
         errorUsername: state.errorUsername,
         email: event.email,
         errorEmail: _checkEmail(event.email),
-        password: state.password,
         errorPassword: state.errorPassword,
-        isUsernameCheck: state.isUsernameCheck,
       ));
 
   void _onPasswordChanged(PasswordChanged event, Emitter<MyFormState> emit) =>
-      emit(MyFormState(
-        username: state.username,
+      emit(state.copyWith(
         errorUsername: state.errorUsername,
-        email: state.email,
         errorEmail: state.errorEmail,
         password: event.password,
         errorPassword: _checkPassword(event.password),
-        isUsernameCheck: state.isUsernameCheck,
       ));
 
   void _onFormSubmitted(FormSubmitted event, Emitter<MyFormState> emit) {
-    emit(MyFormState(
-      username: state.username,
+    emit(state.copyWith(
       errorUsername: state.username.isEmpty
           ? _checkUsername(state.username)
           : state.errorUsername,
-      email: state.email,
       errorEmail: _checkEmail(state.email),
-      password: state.password,
       errorPassword: _checkPassword(state.password),
-      isUsernameCheck: state.isUsernameCheck,
     ));
   }
 
