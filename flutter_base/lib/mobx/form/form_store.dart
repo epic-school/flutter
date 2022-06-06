@@ -1,6 +1,7 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:mobx/mobx.dart';
 import 'package:validators2/validators.dart';
-
 part 'form_store.g.dart';
 
 class FormStore = _FormStore with _$FormStore;
@@ -23,6 +24,9 @@ abstract class _FormStore with Store {
   @computed
   bool get isUserCheckPending => usernameCheck.status == FutureStatus.pending;
 
+  @computed                               //
+  bool get canLogin =>!error.hasErrors;   //
+
   late List<ReactionDisposer> _disposers;
 
   void setupValidators() {
@@ -35,13 +39,18 @@ abstract class _FormStore with Store {
 
   @action
   void validatePassword(String value) {
-    error.password =
-        isNull(value) || value.isEmpty ? 'Field is required' : null;
+    const passwordList = 'qwe';
+    if (value == passwordList) {
+      error.password = null;
+    } else {
+      error.password = 'enter correct password';
+    }
   }
-
   @action
   void validateEmail(String value) {
-    error.email = isEmail(value) ? 'Not a valid email' : null;
+    if (isEmail(value)){
+      error.email = null;
+    } else { error.email= 'enter correct email';}
   }
 
   @action
@@ -61,7 +70,7 @@ abstract class _FormStore with Store {
         error.username = 'Username cannot be "admin"';
         return;
       }
-    } catch (_) {
+    } on Object catch (_) {
       error.username = null;
     }
 

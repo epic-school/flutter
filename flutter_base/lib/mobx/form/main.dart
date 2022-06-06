@@ -35,8 +35,9 @@ class _AppFormState extends State<AppForm> {
 
   @override
   void dispose() {
-    super.dispose();
     store.dispose();
+    super.dispose();
+//    store.dispose();
   }
 
   @override
