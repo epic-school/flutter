@@ -37,7 +37,7 @@ class Docs {
   List<Names>? names;
   String? shortDescription;
   String? color;
-  bool isFavorite = false;
+  bool? isFavorite;
 
   Docs(
       { this.logo,

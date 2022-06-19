@@ -40,6 +40,7 @@ class _ReviewDetailScreenState extends State<ReviewDetailScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        iconTheme: Theme.of(context).primaryIconTheme,
         title: const Text('Подробная информация по отзыву'),
       ),
       body: _ReviewDetailView(

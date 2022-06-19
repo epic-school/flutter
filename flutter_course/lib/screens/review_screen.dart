@@ -55,6 +55,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        iconTheme: Theme.of(context).primaryIconTheme,
         title: const Text('Отзывы на фильм'),
       ),
       body: _ReviewView(

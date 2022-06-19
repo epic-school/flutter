@@ -7,6 +7,7 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+
       child: ListView(
         // Remove padding
         padding: EdgeInsets.zero,
@@ -15,7 +16,7 @@ class NavBar extends StatelessWidget {
             accountName:  Text('kotelnikov-aa'),
             accountEmail: Text('aleksey@kotelnikov.org'),
             decoration:  BoxDecoration(
-              color: Colors.blue,
+              color: Colors.black,
             ),
           ),
            ListTile(

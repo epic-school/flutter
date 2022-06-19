@@ -63,7 +63,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         bloc: GetIt.I.get<MovieBloc>(),
         builder: (context, state) {
           return Scaffold(
+
             appBar: AppBar(
+              iconTheme: Theme.of(context).primaryIconTheme,
               title: Text(
                 "Избранное",
                 style: Theme.of(context).appBarTheme.titleTextStyle,
@@ -113,6 +115,8 @@ class _FavoriteView extends StatelessWidget {
         }
 
         if (state is MovieLoadedState) {
+          final favorites = state.favoritesId
+              .toList();
             final items = state.movies
                 ?.where((bk) => state.favoritesId.contains(bk.id))
                 .toList();
@@ -158,7 +162,7 @@ class _FavoriteView extends StatelessWidget {
                     ),
                     IconButton(
                       icon: Icon(
-                        items?[i].isFavorite??false ? Icons.favorite : Icons.favorite_border,
+                        Icons.favorite ,
                         size: 30,
                         color: Theme.of(context).iconTheme.color,
 
@@ -166,7 +170,7 @@ class _FavoriteView extends StatelessWidget {
                       onPressed: () {
                         final bloc = GetIt.I.get<MovieBloc>();
                         if (items?[i].id != null) {
-                          if (items?[i].isFavorite??false) {
+                          if (favorites.contains(items?[i].id)) {
                             bloc.add(DeleteFromBookmarkEvent(items?[i].id as int));
                             items?[i].isFavorite=false;
                           } else {

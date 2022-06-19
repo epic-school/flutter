@@ -49,6 +49,7 @@ class App extends StatelessWidget {
         themeMode: state.theme,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+
           appBarTheme: AppBarTheme(
             backgroundColor: Colors.white,
             elevation: 0,
@@ -60,7 +61,11 @@ class App extends StatelessWidget {
           iconTheme: const IconThemeData(
               color: Colors.red
           ),
-          dividerTheme: const DividerThemeData(
+          primaryIconTheme: const IconThemeData(
+              color: Colors.black
+          ),
+
+            dividerTheme: const DividerThemeData(
             color: Colors.black
           ),
           textTheme: TextTheme(
@@ -82,7 +87,10 @@ class App extends StatelessWidget {
           iconTheme: const IconThemeData(
             color: Colors.white
          ),
-          dividerTheme: const DividerThemeData(
+          primaryIconTheme: const IconThemeData(
+              color: Colors.white
+          ),
+            dividerTheme: const DividerThemeData(
               color: Colors.white
           ),
           textTheme: TextTheme(

@@ -65,8 +65,8 @@ class _MoviesScreenState extends State<MovieScreen> {
         bloc: GetIt.I.get<MovieBloc>(),
     builder: (context, state) {
           return Scaffold(
-
             appBar: AppBar(
+              iconTheme: Theme.of(context).primaryIconTheme,
               title: Text(
                 "Кинопремьеры",
                 style: Theme.of(context).appBarTheme.titleTextStyle,
@@ -84,8 +84,10 @@ class _MoviesScreenState extends State<MovieScreen> {
                 ),
               ],
           ),
-          drawer: NavBar(),
-          body: const _MoviesView(),
+          drawer:   NavBar(),
+
+
+            body: const _MoviesView(),
         );
       }
     );
@@ -97,6 +99,8 @@ class _MoviesView extends StatelessWidget {
   const _MoviesView({
     Key? key
   }) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +120,10 @@ class _MoviesView extends StatelessWidget {
         }
 
         if (state is MovieLoadedState) {
+          final favorites = state.favoritesId
+              .toList();
           final items = state.movies;
+
           if (items?.isEmpty??false) {
             return const Center(
               child: Text(
@@ -159,19 +166,17 @@ class _MoviesView extends StatelessWidget {
                   ),
                   IconButton(
                     icon: Icon(
-                      items?[i].isFavorite??false ? Icons.favorite : Icons.favorite_border,
+                      favorites.contains(items?[i].id) ? Icons.favorite : Icons.favorite_border,
                       size: 30,
                       color: Theme.of(context).iconTheme.color,
                     ),
                   onPressed: () {
                       final bloc = GetIt.I.get<MovieBloc>();
                       if (items?[i].id != null) {
-                        if (items?[i].isFavorite??false) {
+                        if (favorites.contains(items?[i].id) ) {
                           bloc.add(DeleteFromBookmarkEvent(items?[i].id as int));
-                          items?[i].isFavorite=false;
                         } else {
                           bloc.add(AddToBookmarkEvent(items?[i].id as int));
-                          items?[i].isFavorite=true;
                         }
                       }
         },
