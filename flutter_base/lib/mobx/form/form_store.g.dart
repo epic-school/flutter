@@ -16,6 +16,12 @@ mixin _$FormStore on _FormStore, Store {
           Computed<bool>(() => super.isUserCheckPending,
               name: '_FormStore.isUserCheckPending'))
       .value;
+  Computed<bool>? _$canLoginComputed;
+
+  @override
+  bool get canLogin => (_$canLoginComputed ??=
+          Computed<bool>(() => super.canLogin, name: '_FormStore.canLogin'))
+      .value;
 
   late final _$nameAtom = Atom(name: '_FormStore.name', context: context);
 
@@ -120,7 +126,8 @@ name: ${name},
 email: ${email},
 password: ${password},
 usernameCheck: ${usernameCheck},
-isUserCheckPending: ${isUserCheckPending}
+isUserCheckPending: ${isUserCheckPending},
+canLogin: ${canLogin}
     ''';
   }
 }

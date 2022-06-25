@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/network/api_service.dart';
 import 'package:flutter_base/network/enums.dart';
 import 'package:flutter_base/network/models/post_model.dart';
+import 'commentscreen.dart';
 
 void main() {
   runApp(const App());
@@ -90,7 +91,20 @@ class _PostsView extends StatelessWidget {
         return ListView.builder(
           itemCount: posts.length,
           itemBuilder: (context, i) => ListTile(
-            title: Text(posts[i].title),
+            title: TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FullCommentScreen(
+                      postname: posts[i].title,
+                      id: i + 1,
+                    ),
+                  ),
+                );
+              },
+              child: Text(posts[i].title),
+            ),
             subtitle: Text(posts[i].body),
           ),
         );

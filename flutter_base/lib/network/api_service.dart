@@ -9,6 +9,8 @@ const _baseUrl = 'https://jsonplaceholder.typicode.com';
 
 abstract class ApiService {
   Future<ApiModel<List<PostModel>, Failure>> getPosts();
+  Future<ApiModel<List<CommentModel>, Failure>> getComments(
+      {required int postID});
 }
 
 class ApiServiceImpl implements ApiService {
@@ -32,7 +34,25 @@ class ApiServiceImpl implements ApiService {
       final models = json.map((e) => PostModel.fromJson(e));
 
       print(DateTime.now().difference(now).inMilliseconds);
+      return ApiModel.success(models.toList());
+    } catch (e) {
+      return ApiModel.error(Failure());
+    }
+  }
 
+  @override
+  Future<ApiModel<List<CommentModel>, Failure>> getComments(
+      {required int postID}) async {
+    try {
+      final url = Uri.parse(_baseUrl + '/comments?postId=' + postID.toString());
+      final response = await http.get(url);
+      if (response.statusCode != 200) {
+        ApiModel.error(Failure());
+      }
+      await Future.delayed(const Duration(seconds: 1));
+      final now = DateTime.now();
+      final List<dynamic> json = jsonDecode(response.body);
+      final models = json.map((e) => CommentModel.fromJson(e));
       return ApiModel.success(models.toList());
     } catch (e) {
       return ApiModel.error(Failure());
@@ -57,6 +77,22 @@ class ApiServiceDio implements ApiService {
       final list = response.data as List<dynamic>;
 
       final models = list.map((e) => PostModel.fromJson(e));
+
+      return ApiModel.success(models.toList());
+    } catch (e) {
+      return ApiModel.error(Failure());
+    }
+  }
+
+  @override
+  Future<ApiModel<List<CommentModel>, Failure>> getComments(
+      {required int postID}) async {
+    try {
+      final response = await dio.get('/comments' + postID.toString());
+
+      final list = response.data as List<dynamic>;
+
+      final models = list.map((e) => CommentModel.fromJson(e));
 
       return ApiModel.success(models.toList());
     } catch (e) {
