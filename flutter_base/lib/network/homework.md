@@ -9,3 +9,6 @@
 - Необходимо продумать состояние загрузки, результата, пустого результата и ошибки
 
 [API](https://jsonplaceholder.typicode.com/)
+
+// PostDetails
+
