@@ -1,64 +1,38 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/network/api_service.dart';
 import 'package:flutter_base/network/enums.dart';
-import 'package:flutter_base/network/homework/post.dart';
-import 'package:flutter_base/network/models/post_model.dart';
+import 'package:flutter_base/network/models/comment_model.dart';
 
-void main() {
-  //runApp(const App());
-  runApp(MaterialApp(
-    initialRoute: '/',
-    onGenerateRoute: (settings) {
-      switch (settings.name) {
-        case '/':
-          return MaterialPageRoute(
-            builder: (context) => const App(),
-          );
-      }
-    },
-  ));
-}
-
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+class Comments extends StatefulWidget {
+  final int postId;
+  const Comments({Key? key, required this.postId}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: PostsScreen(),
-    );
-  }
+  State<Comments> createState() => _CommentsState();
 }
 
-class PostsScreen extends StatefulWidget {
-  const PostsScreen({Key? key}) : super(key: key);
-
-  @override
-  State<PostsScreen> createState() => _PostsScreenState();
-}
-
-class _PostsScreenState extends State<PostsScreen> {
+class _CommentsState extends State<Comments> {
   final ApiService service = ApiServiceDio.instance;
   var state = ContentState.initial;
-  final posts = <PostModel>[];
+  final comments = <CommentModel>[];
 
   Future<void> load() async {
     setState(() {
       state = ContentState.loading;
     });
-    final response = await service.getPosts();
+    final response = await service.getComments(widget.postId);
     if (response.hasError) {
       setState(() {
         state = ContentState.failure;
-        posts.clear();
+        comments.clear();
       });
     } else {
       setState(() {
         state = response.result!.isNotEmpty
             ? ContentState.success
             : ContentState.empty;
-        posts
+        comments
           ..clear()
           ..addAll(response.result!);
       });
@@ -73,44 +47,35 @@ class _PostsScreenState extends State<PostsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Posts list'),
+    return Column(children: [
+      Container(
+        height: 20,
+        child: Text('Комментарии'),
       ),
-      body: _PostsView(
+      Flexible(
+          child: _CommentsView(
         state: state,
-        posts: posts,
-      ),
-    );
+        comments: comments,
+      )),
+    ]);
   }
 }
 
-class _PostsView extends StatelessWidget {
+class _CommentsView extends StatelessWidget {
   final ContentState state;
-  final List<PostModel> posts;
-
-  const _PostsView({
-    Key? key,
-    required this.state,
-    this.posts = const [],
-  }) : super(key: key);
+  final List<CommentModel> comments;
+  const _CommentsView({Key? key, required this.state, this.comments = const []})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     switch (state) {
       case ContentState.success:
         return ListView.builder(
-          itemCount: posts.length,
+          itemCount: comments.length,
           itemBuilder: (context, i) => ListTile(
-            title: Text(posts[i].title),
-            subtitle: Text(posts[i].body),
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Post(postId: posts[i].id),
-                  ));
-            },
+            title: Text(comments[i].name),
+            subtitle: Text(comments[i].body),
           ),
         );
       case ContentState.loading:
