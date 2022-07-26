@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -9,6 +10,9 @@ import './data.dart';
 abstract class AppColors {
   static const Color mainBgColor = Color.fromRGBO(27, 32, 45, 1);
   static const Color secondaryBgColor = Color.fromRGBO(41, 47, 63, 1);
+
+  static const Color inputMsgBgColor = Color.fromRGBO(55, 62, 78, 1);
+  static const Color outputMsgBgColor = Color.fromRGBO(122, 129, 148, 1);
 
   static const Color textPrimaryColor = Colors.white;
   static const Color textSecondaryColor = Color.fromRGBO(179, 185, 201, 1);
@@ -54,6 +58,13 @@ abstract class AppTextStyle {
   static const TextStyle accentL = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 14.0,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textSecondaryColor,
+  );
+
+  static const TextStyle hint = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 12.0,
     fontWeight: FontWeight.w400,
     color: AppColors.textSecondaryColor,
   );
@@ -268,6 +279,44 @@ class _ChatListItem extends StatelessWidget {
   }
 }
 
+class _ChatMsg extends StatelessWidget {
+  final ChatItemMessageModel msgData;
+  const _ChatMsg({Key? key, required this.msgData}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double _widthStage = MediaQuery.of(context).size.width;
+    double _maxWidth = _widthStage * 0.80;
+    final Color _bgColot = msgData.type == MessageType.input
+        ? AppColors.inputMsgBgColor
+        : AppColors.outputMsgBgColor;
+    final AlignmentGeometry _aligment = msgData.type == MessageType.input
+        ? Alignment.topLeft
+        : Alignment.topRight;
+    final TextAlign _textAlign =
+        msgData.type == MessageType.input ? TextAlign.left : TextAlign.right;
+    // final
+    return Padding(
+        padding: const EdgeInsets.all(10),
+        child: Container(
+            width: _widthStage,
+            alignment: _aligment,
+            child: Container(
+              constraints: BoxConstraints(maxWidth: _maxWidth),
+              decoration: BoxDecoration(
+                  color: _bgColot, borderRadius: BorderRadius.circular(20)),
+              child: Padding(
+                  padding: const EdgeInsets.only(
+                      bottom: 12, left: 20, right: 20, top: 12),
+                  child: Text(
+                    msgData.text,
+                    textAlign: _textAlign,
+                    style: AppTextStyle.label,
+                  )),
+            )));
+  }
+}
+
 class ChatDetail extends StatelessWidget {
   const ChatDetail({Key? key}) : super(key: key);
 
@@ -312,18 +361,30 @@ class ChatDetail extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-              child: ListView.separated(
-            separatorBuilder: (context, index) {
-              if (index != 5 ) {
-                return Container();
-              }
-              return Divider();
-            },
-            itemBuilder: (context, index) {
-              return const Text("asdasd");
-            },
-            itemCount: 120,
-          )),
+              child: ListView.builder(
+                  reverse: true,
+                  itemBuilder: ((context, index) {
+                    final ChatItemMessageModel msgItem =
+                        mockMessagesList[index];
+                    final bool isNewDate = index == 0 ||
+                        msgItem.date != mockMessagesList[index - 1].date;
+                    if (isNewDate) {
+                      return Column(
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Text(msgItem.date,
+                                  style: AppTextStyle.label)),
+                          _ChatMsg(msgData: msgItem)
+                        ],
+                      );
+                    } else {
+                      return Column(
+                        children: [_ChatMsg(msgData: msgItem)],
+                      );
+                    }
+                  }),
+                  itemCount: mockMessagesList.length)),
           Container(
             padding: const EdgeInsets.only(
               left: 14,
@@ -364,6 +425,7 @@ class ChatDetail extends StatelessWidget {
                       child: const TextField(
                         decoration: InputDecoration(
                           hintText: "Message",
+                          hintStyle: AppTextStyle.hint,
                           border: InputBorder.none,
                         ),
                       ),
