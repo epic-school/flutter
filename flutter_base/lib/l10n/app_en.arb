@@ -1,7 +1,36 @@
 {
-  "helloWorld": "Hello World!",
+  "helloWorld": "Hello World",
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
   },
-  "hi": "Hi member!"
+  "hi": "Hi {name}!",
+  "@hi": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "cucumber": "{count,plural, =0{No cucumbers} =1{{count} cucumber} =2{{count} cucumber} other{{count} cucumbers}}",
+  "@cucumber": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "itemTotal": "Total: {value}",
+  "@itemTotal": {
+    "placeholders": {
+      "value": {
+        "type": "double",
+        "format": "currency"
+      }
+    }
+  },
+  "date": "Date: {date}",
+  "@date": {
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMd"
+      }
+    }
+  }
 }

@@ -1,4 +1,33 @@
 {
-  "helloWorld": "Привет",
-  "hi": "Привет человек"
+  "helloWorld": "Привет мир",
+  "hi": "Привет {name}",
+  "@hi": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "cucumber": "{count,plural, =0{Нет огурцов} =1{{count} огурец} =2{{count} огурца} other{{count} огурцов}}",
+  "@cucumber": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "itemTotal": "Всего: {value}",
+  "@itemTotal": {
+    "placeholders": {
+      "value": {
+        "type": "double",
+        "format": "currency"
+      }
+    }
+  },
+  "date": "Дата: {date}",
+  "@date": {
+    "placeholders": {
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMd"
+      }
+    }
+  }
 }
