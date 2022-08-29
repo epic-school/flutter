@@ -1,0 +1,35 @@
+{
+  "title": "Simple title",
+  "localization": "Easy localization",
+  "gender":{
+    "male":"Hi man ;) {name}",
+    "female":"Hello girl :) {name}",
+    "other":"Hello {name}"
+  },
+  "day": {
+    "zero":"{} days",
+    "one": "{} day",
+    "two": "{} day",
+    "few": "{} day",
+    "many": "{} days",
+    "other": "{} days"
+  },
+  "money": {
+    "zero": "You not have money",
+    "one": "You have {} dollar",
+    "many": "You have {} dollars",
+    "other": "You have {} dollars"
+  },
+  "money_args": {
+    "zero": "{} has no money",
+    "one": "{} has {} dollar",
+    "many": "{} has {} dollars",
+    "other": "{} has {} dollars"
+  },
+  "money_named_args": {
+    "zero": "{name} has no money",
+    "one": "{name} has {money} dollar",
+    "many": "{name} has {money} dollars",
+    "other": "{name} has {money} dollars"
+  }
+}

@@ -48,6 +48,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl_utils: ^2.6.1
+  easy_localization: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +79,7 @@ flutter:
   assets:
     - assets/images/
     - assets/json/
+    - assets/translations/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

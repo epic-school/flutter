@@ -1,0 +1,35 @@
+{
+  "title": "Просто заголовок",
+  "localization": "Простая локализация",
+  "gender":{
+    "male":"Привет мистер ;) {name}",
+    "female":"Привет мисс :) {name}",
+    "other":"Привет {name}"
+  },
+  "day": {
+    "zero":"{} дней",
+    "one": "{} день",
+    "two": "{} дня",
+    "few": "{} дня",
+    "many": "{} дней",
+    "other": "{} дней"
+  },
+  "money": {
+    "zero": "Нет денег",
+    "one": "У вас {} доллара",
+    "many": "У вас {} долларов",
+    "other": "У вас {} долларов"
+  },
+  "money_args": {
+    "zero": "{} нет денег",
+    "one": "{} has {} dollar",
+    "many": "{} has {} dollars",
+    "other": "{} has {} dollars"
+  },
+  "money_named_args": {
+    "zero": "{name} has no money",
+    "one": "{name} has {money} dollar",
+    "many": "{name} has {money} dollars",
+    "other": "{name} has {money} dollars"
+  }
+}
