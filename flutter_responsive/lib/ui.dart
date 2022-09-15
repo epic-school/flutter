@@ -4,6 +4,20 @@ void main() {
   runApp(const MaterialApp(home: ExampleUI(),));
 }
 
+class MenuItem {
+  final String text;
+  final IconData icon;
+
+  MenuItem({ required this.text, required this.icon });
+}
+
+final menuItems = [
+  MenuItem(text: "Home page", icon: Icons.home),
+  MenuItem(text: "Catalog", icon: Icons.list),
+];
+final content = List.generate(40, (index) => "Item: $index");
+
+
 class ExampleUI extends StatelessWidget {
   const ExampleUI({Key? key}) : super(key: key);
 
@@ -21,36 +35,6 @@ class ExampleUI extends StatelessWidget {
   }
 }
 
-class _AppMenu extends StatelessWidget {
-  const _AppMenu({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: const [
-        DrawerHeader(
-          decoration: BoxDecoration(
-            color: Colors.blue,
-          ),
-          child: Text('Header'),
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.home,
-          ),
-          title: Text('Page 1'),
-        ),
-        ListTile(
-          leading: Icon(
-            Icons.exit_to_app,
-          ),
-          title: Text('Page 2'),
-        ),
-      ],
-    );
-  }
-}
-
 
 class _MobileLayout extends StatelessWidget {
   const _MobileLayout({Key? key}) : super(key: key);
@@ -61,8 +45,33 @@ class _MobileLayout extends StatelessWidget {
       appBar: AppBar(
         title: const Text("This is mobile"),
       ),
-      drawer: const Drawer(
-        child: _AppMenu(),
+      body: GridView.count(
+        crossAxisCount: 2,
+        children: [
+          ...content.map((e) => Container(
+            margin: const EdgeInsets.all(6),
+            color: Colors.red,
+            child: Center(child: Text(e),),
+          )).toList()
+        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Header'),
+            ),
+            ...menuItems.map((e) => ListTile(
+              leading: Icon(
+                  e.icon
+              ),
+              title: Text(e.text),
+            )).toList(),
+          ],
+        ),
       ),
     );
   }
@@ -75,29 +84,27 @@ class _TabletLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 6,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           title: const Text("This is tablet"),
-          bottom: const TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.home), text: "Page 1",),
-              Tab(icon: Icon(Icons.exit_to_app), text: "Page 2",),
-              Tab(icon: Icon(Icons.home), text: "Page 1",),
-              Tab(icon: Icon(Icons.exit_to_app), text: "Page 2",),
-              Tab(icon: Icon(Icons.home), text: "Page 1",),
-              Tab(icon: Icon(Icons.exit_to_app), text: "Page 2",),
-            ],
+          bottom: TabBar(
+            tabs: menuItems.map((e) => Tab(text: e.text, icon: Icon(e.icon),)).toList(),
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
-            Icon(Icons.home),
-            Icon(Icons.exit_to_app),
-            Icon(Icons.home),
-            Icon(Icons.exit_to_app),
-            Icon(Icons.home),
-            Icon(Icons.exit_to_app),
+            GridView.count(
+              crossAxisCount: 4,
+              children: [
+                ...content.map((e) => Container(
+                  margin: const EdgeInsets.all(6),
+                  color: Colors.red,
+                  child: Center(child: Text(e),),
+                )).toList()
+              ],
+            ),
+            const Icon(Icons.exit_to_app),
           ],
         ),
       ),
@@ -110,11 +117,36 @@ class _DesktopLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Drawer(
-        elevation: 0,
-        width: 420,
-        child: _AppMenu(),
+    final gridLength = MediaQuery.of(context).size.width > 1800 ? 6 : 4;
+
+    return Scaffold(
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 440,
+            height: double.infinity,
+            color: Colors.black12,
+            child: ListView(
+              children: menuItems.map((e) => ListTile(
+                leading: Icon(e.icon),
+                title: Text(e.text),
+              )).toList(),
+            ),
+          ),
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: gridLength,
+              children: [
+                ...content.map((e) => Container(
+                  margin: const EdgeInsets.all(6),
+                  color: Colors.red,
+                  child: Center(child: Text(e),),
+                )).toList()
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

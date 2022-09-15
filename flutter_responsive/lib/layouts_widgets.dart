@@ -9,7 +9,7 @@ class LayoutWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData device = MediaQuery.of(context);
+    // final MediaQueryData device = MediaQuery.of(context);
 
     return Scaffold(
       // AspectRatio
@@ -19,7 +19,7 @@ class LayoutWidgets extends StatelessWidget {
       //   color: Colors.green,
       //   alignment: Alignment.topCenter,
       //   child: AspectRatio(
-      //     aspectRatio: 4 / 1,
+      //     aspectRatio: 2 / 1,
       //     child: Container(color: Colors.red,),
       //   ),
       // )
@@ -29,9 +29,9 @@ class LayoutWidgets extends StatelessWidget {
       //   width: 500.0,
       //   height: 500.0,
       //   child: FittedBox(
-      //     fit: BoxFit.none,
+      //     fit: BoxFit.contain,
       //     child: Container(
-      //         color: Colors.teal,
+      //         color: Colors.green,
       //         width: 100.0,
       //         height: 50.0,
       //         child: const Center(
@@ -97,16 +97,57 @@ class LayoutWidgets extends StatelessWidget {
       //   ),
       // ),
 
-      // body: Row(
+      // body: Column(
       //   children: [
+      //     Container(color: Colors.black, height: 120,),
       //     Flexible(
-      //       flex: 5,
-      //       child: Container(color: Colors.red,),
+      //       child: Container(color: Colors.red),
       //     ),
       //     Flexible(
-      //       flex: 5,
+      //       flex: 1,
       //       child: Container(color: Colors.blue,),
       //     ),
+      //   ],
+      // ),
+
+      // IntrinsicHeight, IntrinsicWidth
+      // body: Center(
+      //   child: IntrinsicHeight(
+      //     child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.center,
+      //       crossAxisAlignment: CrossAxisAlignment.stretch,
+      //       children: [
+      //         Container(width: 50, height: 120, color: Colors.red,),
+      //         Container(width: 50, height: 60, color: Colors.green,),
+      //         Container(width: 50, height: 420, color: Colors.blue,),
+      //       ],
+      //     ),
+      //   ),
+      // ),
+
+      // Wrap widget
+      // body: Wrap(
+      //   // spacing: 12,
+      //   // runSpacing: 12,
+      //   // alignment: WrapAlignment.spaceAround,
+      //   // direction: Axis.vertical,
+      //   children: [
+      //     Container(width: 120, height: 120, color: Colors.green,),
+      //     Container(width: 120, height: 120, color: Colors.red,),
+      //     Container(width: 120, height: 120, color: Colors.yellow,),
+      //     Container(width: 120, height: 120, color: Colors.black,),
+      //     Container(width: 120, height: 120, color: Colors.blue,),
+      //   ],
+      // ),
+
+      // Spacer
+      // body: Column(
+      //   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //   children: [
+      //     Container(width: 120, height: 120, color: Colors.red,),
+      //     const Spacer(flex: 3,),
+      //     Container(width: 120, height: 120, color: Colors.green,),
+      //     const Spacer(flex: 1,),
       //   ],
       // ),
 

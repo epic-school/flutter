@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_responsive/responsive_utils.dart';
 
 void main() {
   runApp(const MaterialApp(home: MediaQueryExample(),));
