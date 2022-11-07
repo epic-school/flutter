@@ -8,8 +8,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mobx/mobx.dart';
 
 void main() async {
-  // testWidgets('Поиск по дереву виджетов', (tester) async {
-    // await tester.pumpWidget(const TestApp());
+  testWidgets('Поиск по дереву виджетов', (tester) async {
+    await tester.pumpWidget(const TestApp());
 
     // Поиск по тексту
     // final titleFinder = find.text('Hello world');
@@ -46,7 +46,7 @@ void main() async {
     // expect(textContain, findsNothing);
     // expect(textContain, findsNWidgets(2));
     // expect(textContain, findsWidgets);
-  // });
+  });
 
   // Тестирование по скриншоту
   // flutter test --update-goldens
@@ -100,9 +100,10 @@ void main() async {
   //   expect(find.text('Has data'), findsOneWidget);
   // });
 
-  testWidgets('Тестирование виджета c Future', (tester) async {
-    await tester.pumpWidget(const WidgetWithFuture(), const Duration(seconds: 2));
-    await tester.pump(const Duration(seconds: 3));
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
-  });
+  // testWidgets('Тестирование виджета c Future', (tester) async {
+  //   await tester.pumpWidget(const WidgetWithFuture(), const Duration(seconds: 2));
+  //   expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  //   await tester.pump(const Duration(seconds: 3));
+  //   expect(find.byType(CircularProgressIndicator), findsNothing);
+  // });
 }
